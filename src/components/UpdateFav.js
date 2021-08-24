@@ -17,23 +17,23 @@ export class UpdateFav extends Component {
     }
 
     handleUpdateModel = (e) => this.setState({ favNmae: e.target.value })
-    handleFavInstructions=(e)=> this.setState({favInstructions:e.target.value})
-    handleFavPhoto=(e)=> this.setState({favPhoto:e.target.value})
+    handleFavInstructions = (e) => this.setState({ favInstructions: e.target.value })
+    handleFavPhoto = (e) => this.setState({ favPhoto: e.target.value })
 
-    submitUpdateModel=(e)=>{
+    submitUpdateModel = (e) => {
         e.preventDefult();
         const id = this.state.id
-        const body ={
-            name : this.state.favNmae , 
-            instructions : this.state.favInstructions ,
-            photo : this.state.favPhoto,
+        const body = {
+            name: this.state.favNmae,
+            instructions: this.state.favInstructions,
+            photo: this.state.favPhoto,
 
         }
-        axios.put(`http://localhost:4040/fav/${id}`).then(res=>{
-            const update = this.props.fav.map(val=>{
-                if (val._id === id ){
+        axios.put(`http://localhost:4040/fav/${id}`).then(res => {
+            const update = this.props.fav.map(val => {
+                if (val._id === id) {
                     val.name = res.data.favNmae;
-                    val.instructions= res.data.favInstructions;
+                    val.instructions = res.data.favInstructions;
                     val.photo = res.data.favPhoto
 
                     return val
@@ -42,7 +42,7 @@ export class UpdateFav extends Component {
             })
             this.props.updateFav(update);
             this.props.handleUpdateModel({})
-        }).catch(error=>{alert(error)})
+        }).catch(error => { alert(error) })
     }
 
 

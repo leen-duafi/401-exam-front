@@ -15,9 +15,9 @@ class FavFlowers extends React.Component {
     }
   }
   componentDidMount = () => {
-    axios.get('http://localhost:4040/fav?q${this.props.auth0.user.email}').then(res => {
+    axios.get(`http://localhost:4040/fav?q${this.props.auth0.user.email}`).then(res =>
       this.setState({ fav: res.data })
-    }).catch(error => { alert(error) })
+    ).catch(error => { alert(error) })
   }
 
   deleteFav = (favId) => {
